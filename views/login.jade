@@ -1,0 +1,18 @@
+extends index
+
+block home
+
+	h3 Login
+
+	if success != null
+		p Login: #{message}
+
+	form(method='post', action='/login')
+
+		div.row.uniform
+			div(class='6u 12u$(xsmall)')
+				input(type='text', name='name', id='name', value='', placeholder='Name')
+			div(class="6u 12u$(xsmall)")
+				input(type='password', name='password', id='password', value='', placeholder='Password')
+			div(class='6u 12u$(xsmall)')
+				button.button Logar

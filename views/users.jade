@@ -1,0 +1,10 @@
+extends index
+
+block home
+
+	ul
+		for user in users
+			li
+				p: strong Nome: #{ user.name }
+				p: strong Pass: #{ user.password }
+				p: strong Admin: #{ user.admin }

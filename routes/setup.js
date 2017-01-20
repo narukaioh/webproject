@@ -1,23 +1,22 @@
 var express = require('express');
 var router = express.Router();
-var User = require('./models/user');
+var User = require('../models/user');
 
-/* GET home page. */
-router.get('/setup', function(req, res, next) {
-  var nick = new User({
-  	name: 'Ju Dantas',
-  	password: 'password',
-  	admin: true
-  });
+/* GET setup */
+router.get('/', function(req, res, next) {
 
-  nick.save(callback);
+	var nick = new User({
+		name: 'juds',
+		password: '123456',
+		admin: true
+	});
+
+	nick.save(function(err){
+		if (err) throw err;
+		console.log('Usuario salvo com sucesso!');
+		res.json({success: true });
+	});
 
 });
-
-var callback = function(err){ 
-	if (err) throw err;
-	console.log('Usuario salvo com sucesso!');
-	res.json({success: true });
-}
 
 module.exports = router;
