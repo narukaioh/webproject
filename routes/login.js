@@ -1,8 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var User = require('../models/user');
-var jwt = require('jsonwebtoken');
-var app = express();
+var express 	= require('express');
+var router 		= express.Router();
+var msg 		= require('../config/messages');
+var User 		= require('../models/user');
+var jwt 		= require('jsonwebtoken');
+var app 		= express();
+
+console.log(msg);
 
 /* GET login */
 router.get('/', function(req, res, next) {
@@ -13,36 +16,35 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res){
 	
 	User.findOne({ name: req.body.name }, function(err, user){
-		console.log(user);
+
 		if (err) throw err;
 		
 		if(!user) {
-			res.render('login', { success: false, message: 'Autenticacao falhou. Usuário nao encontrado.' });
+			res.render('login', { success: false, message: msg.LG0001 });
 		}else if (user) {
 			if (user.password != req.body.password) {
-				res.render({ success: false, message: 'Autenticacao falhou. Senha inválida. '});
+				res.render({ success: false, message: msg.LG0002 });
 			}else{
 				var token = jwt.sign(user, req.app.get('superSecret'), {
 					expiresIn: 1440
 				});
-				console.log(token);
-				res.render('login', { success: true, message: 'Aproveite!', token: token });
+
+				res.render('login', { success: true, message: msg.LG0003 , token: token });
 			}
 		}
 	});
 });
 
-/*
-Estudar sobre essa função que verifica a autenticacao
-Link: 
+/* para as url que usarão o token e a sessao  */
+
 router.use(function(req, res, next){
-	console.log("teste!");
+
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
 	if (token) {
 		jwt.verify(token, req.app.get('superSecret'), function(err, decoded){
 			if (err) {
-				return res.render('login', { success: false, message: 'Falha ao autenticar token.' });
+				return res.render('login', { success: false, message: msg.LG0004 });
 			}else {
 				req.decoded = decoded;
 				next();
@@ -51,11 +53,9 @@ router.use(function(req, res, next){
 	}else{
 		return res.status(403).send({
 			success: false,
-			message: 'Nenhum token criado.'
+			message: msg.LG0005
 		});
 	}
 });
-
-app.use('/login', router); */
 
 module.exports = router;
