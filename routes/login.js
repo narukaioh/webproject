@@ -5,43 +5,60 @@ var User 		= require('../models/user');
 var jwt 		= require('jsonwebtoken');
 var app 		= express();
 
-console.log(msg);
-
 /* GET login */
-router.get('/', function(req, res, next) {
+router.get('/authenticate', function(req, res, next) {
   	res.render('login');
 });
 
 /*POST login*/
-router.post('/', function(req, res){
+router.post('/authenticate', function(req, res){
 	
 	User.findOne({ name: req.body.name }, function(err, user){
 
 		if (err) throw err;
 		
-		if(!user) {
+		if(!user) { // Se nao encontrou o login
 			res.render('login', { success: false, message: msg.LG0001 });
-		}else if (user) {
-			if (user.password != req.body.password) {
-				res.render({ success: false, message: msg.LG0002 });
+		}else if (user) { // Se encontrou o login
+
+			// Verifica a senha
+			if (user.checkPassword(req.body.password)) {
+				res.render('login', { success: false, message: msg.LG0002 });
 			}else{
 				var token = jwt.sign(user, req.app.get('superSecret'), {
-					expiresIn: 1440
+					expiresIn: '90440 seconds'
 				});
-
-				res.render('login', { success: true, message: msg.LG0003 , token: token });
+				console.log(token);
+				res.render('account', { success: true, message: msg.LG0003 , token: token });
+				//res.redirect('/login/account', { success: true, message: msg.LG0003 , token: token });
 			}
 		}
 	});
 });
 
-/* para as url que usarão o token e a sessao  */
+router.get('/account', function(req, res, next){
+	res.render('account');
+});
+
+router.get('/users', function(req, res, next) {
+	User.find({}, function(err, users){
+		res.render('users', { users: users });
+	});
+});
+
+
+/*
+	para as url que usarão o token e a sessao 
+	como preparar o token no client para enviar e autenticar a url
+	http://pt.stackoverflow.com/questions/88431/como-setar-um-token-no-header
+*/
 
 router.use(function(req, res, next){
 
-	var token = req.body.token || req.query.token || req.headers['x-access-token'];
+	var token = (req.body && req.body.token) || (req.query && req.query.token) || req.headers['x-access-token'];
 
 	if (token) {
+		
 		jwt.verify(token, req.app.get('superSecret'), function(err, decoded){
 			if (err) {
 				return res.render('login', { success: false, message: msg.LG0004 });
@@ -50,6 +67,7 @@ router.use(function(req, res, next){
 				next();
 			}
 		});
+
 	}else{
 		return res.status(403).send({
 			success: false,

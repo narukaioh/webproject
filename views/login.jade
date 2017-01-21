@@ -7,7 +7,7 @@ block home
 	if success != null
 		p Login: #{message}
 
-	form(method='post', action='/login')
+	form(method='post', action='/login/authenticate')
 
 		div.row.uniform
 			div(class='6u 12u$(xsmall)')
