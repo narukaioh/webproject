@@ -30,14 +30,13 @@ router.post('/authenticate', function(req, res){
 				});
 				console.log(token);
 				res.render('account', { success: true, message: msg.LG0003 , token: token });
-				//res.redirect('/login/account', { success: true, message: msg.LG0003 , token: token });
 			}
 		}
 	});
 });
 
 router.get('/account', function(req, res, next){
-	res.render('account');
+	validateToken(req, res, next, 'account');	
 });
 
 router.get('/users', function(req, res, next) {
@@ -46,7 +45,6 @@ router.get('/users', function(req, res, next) {
 	});
 });
 
-
 /*
 	para as url que usarão o token e a sessao 
 	como preparar o token no client para enviar e autenticar a url
@@ -54,6 +52,10 @@ router.get('/users', function(req, res, next) {
 */
 
 router.use(function(req, res, next){
+	validateToken(req, res, next, 'login');
+});
+
+function validateToken(req, res, next, view){
 
 	var token = (req.body && req.body.token) || (req.query && req.query.token) || req.headers['x-access-token'];
 
@@ -61,9 +63,10 @@ router.use(function(req, res, next){
 		
 		jwt.verify(token, req.app.get('superSecret'), function(err, decoded){
 			if (err) {
-				return res.render('login', { success: false, message: msg.LG0004 });
+				return res.render( 'error' , { success: false, message: msg.LG0004 });
 			}else {
 				req.decoded = decoded;
+				res.render(view);
 				next();
 			}
 		});
@@ -73,7 +76,7 @@ router.use(function(req, res, next){
 			success: false,
 			message: msg.LG0005
 		});
-	}
-});
+	}	
+}
 
 module.exports = router;
