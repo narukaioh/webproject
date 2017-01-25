@@ -1,19 +1,21 @@
-var express 		= require('express');
-var path 			= require('path');
-var favicon 		= require('serve-favicon');
-var logger 			= require('morgan');
+'use strict'
+
+var express 		  = require('express');
+var path 			    = require('path');
+var favicon 		  = require('serve-favicon');
+var logger 			  = require('morgan');
 var cookieParser 	= require('cookie-parser');
 var bodyParser 		= require('body-parser');
-var mongoose 		= require('mongoose');
+var mongoose      = require('mongoose');
 
 //Configs
-var config 			= require('./config/config');
+var config 			  = require('./config/config');
 
 //Controllers e Rotas
-var index = require('./routes/index');
-var users = require('./routes/users');
-var login = require('./routes/login');
-var setup = require('./routes/setup');
+var index         = require('./routes/index');
+var users         = require('./routes/users');
+var login         = require('./routes/login');
+var setup         = require('./routes/setup');
 
 //Iniciando aplicação
 var app = express();
@@ -32,10 +34,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next){
-	res.setHeader('Access-Control-Allow-Origin','*');
-	res.setHeader('Access-Control-Allow-Methods','GET, POST');
-	res.setHeader('Access-Control-Allow-Headers','X-Requested-With,content-type, Authorization');
-	next();
+  res.setHeader('Access-Control-Allow-Origin','*');
+  res.setHeader('Access-Control-Allow-Methods','GET, POST');
+  res.setHeader('Access-Control-Allow-Headers','X-Requested-With,content-type, Authorization');
+  next();
 });
 
 app.use('/', index);
