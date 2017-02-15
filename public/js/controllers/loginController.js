@@ -3,19 +3,19 @@
 	'use strict';
 
 	angular
-		.modules('portfolio')
+		.module('portfolio')
 		.controller('loginController', Controller);
 
 
 	function Controller($location, AuthenticationService){
 		var vm = this;
-
+		console.log("login controller");
 		vm.login = login;
 
 		initController();
 
 		function initController(){
-			console.log("init home controller");
+			console.log("init login controller");
 		};
 
 		function login(){
@@ -32,4 +32,4 @@
 
 	}
 
-})
+})();

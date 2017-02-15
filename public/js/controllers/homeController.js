@@ -2,9 +2,7 @@
 
 	'use strict';
 
-	angular
-		.modules('portfolio')
-		.controller('homeController', Controller);
+	angular.module('portfolio').controller('homeController', Controller);
 
 
 	function Controller(){
@@ -18,4 +16,4 @@
 
 	}
 
-})
+})();

@@ -28,7 +28,6 @@ router.post('/authenticate', function(req, res){
 				var token = jwt.sign(user, req.app.get('superSecret'), {
 					expiresIn: '90440 seconds'
 				});
-				console.log(token);
 				res.render('account', { success: true, message: msg.LG0003 , token: token });
 			}
 		}
