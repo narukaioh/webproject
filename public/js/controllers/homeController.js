@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-		.modules('portfolio')
+		.module('portfolio')
 		.controller('homeController', Controller);
 
 
@@ -18,4 +18,4 @@
 
 	}
 
-})
+})();

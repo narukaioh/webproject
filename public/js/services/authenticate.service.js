@@ -1,6 +1,8 @@
-'use strict'
 
-/* controller */
+(function(){
+	'use strict'
+
+	/* controller */
 	angular
 		.module('portfolio')
 		.factory('AuthenticationService', Service);
@@ -34,3 +36,4 @@
 		}
 
 	}
+})();

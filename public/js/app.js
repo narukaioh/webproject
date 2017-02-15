@@ -1,26 +1,26 @@
 (function(){
 
+	console.log("app.js");
 	'use strict';
-
 	angular
-		.module('portfolio', ['ui.router', 'ngMessages', 'ngStorage', 'ngMockE2E'])
+		.module('portfolio', ['ui.router', 'ngMessages', 'ngStorage'])
 		.config(config)
 		.run(run);
 
 		function config($stateProvider, $urlRouterProvider){
-
+			
 			$urlRouterProvider.otherwise("/");
 
 			$stateProvider
 				.state('home',{
 					url: '/',
-					templateUrl: '../home.jade',
+					templateUrl: 'views/home.jade',
 					controller: 'controllers/homeController.js',
 					controllerAs: 'vm'
 				})
 				.state('login',{
 					url: '/login',
-					templateUrl: '../login.jade',
+					templateUrl: 'views/login.jade',
 					controller: 'controllers/loginController.js',
 					controllerAs: 'vm'
 				});
@@ -42,4 +42,4 @@
 			});
 		}
 
-})
+})();

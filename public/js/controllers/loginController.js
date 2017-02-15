@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-		.modules('portfolio')
+		.module('portfolio')
 		.controller('loginController', Controller);
 
 
@@ -32,4 +32,4 @@
 
 	}
 
-})
+})();
