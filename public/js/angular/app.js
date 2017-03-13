@@ -11,6 +11,9 @@
 			
 			$urlRouterProvider.otherwise("/");
 
+			//Artigos sobre rotas
+			//https://rafaell-lycan.com/2015/angular-definindo-rotas/
+
 			$stateProvider
 				.state('home',{
 					url: '/',

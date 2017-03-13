@@ -23,8 +23,13 @@
 					if (res.token){
 						$localStorage.currentUser = { name: username, token: res.token };
 						$http.defaults.headers.common.Authorization = res.token;
+
+						console.log("function Login()");
+						console.log(res.token);
+
 						callback(true);
 					} else {
+						console.log("teste!");
 						callback(true);
 					}
 				});
