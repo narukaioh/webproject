@@ -14,11 +14,22 @@
     "debug": "~2.2.0",
     "express": "~4.14.0",
     "jade": "~1.11.0",
+    "pug": "latest",
     "jsonwebtoken": "~7.2.1",
     "mongoose": "~4.7.6",
     "morgan": "~1.7.0",
     "ngstorage": "^0.3.11",
     "requirejs": "~2.3.2",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-util": "latest",
+    "gulp-sass": "latest",
+    "gulp-less": "latest",
+    "gulp-coffee": "latest",
+    "gulp-uglify": "latest",
+    "gulp-concat": "latest",
+    "gulp-connect": "latest"
+  } 
 }

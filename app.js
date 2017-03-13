@@ -23,7 +23,7 @@ mongoose.connect(config.database);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.set('superSecret', config.secret);
 
 // uncomment after placing your favicon in /public

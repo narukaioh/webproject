@@ -14,13 +14,13 @@
 			$stateProvider
 				.state('home',{
 					url: '/',
-					templateUrl: 'views/home.jade',
+					templateUrl: 'views/home.pug',
 					controller: 'controllers/homeController.js',
 					controllerAs: 'vm'
 				})
 				.state('login',{
 					url: '/login',
-					templateUrl: 'views/login.jade',
+					templateUrl: 'views/login.pug',
 					controller: 'controllers/loginController.js',
 					controllerAs: 'vm'
 				});
