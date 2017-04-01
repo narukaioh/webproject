@@ -20,6 +20,7 @@
     "morgan": "~1.7.0",
     "ngstorage": "^0.3.11",
     "requirejs": "~2.3.2",
+    "ejs": "latest",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
@@ -30,6 +31,7 @@
     "gulp-coffee": "latest",
     "gulp-uglify": "latest",
     "gulp-concat": "latest",
+    "gulp-pug": "latest",
     "gulp-connect": "latest"
   } 
 }

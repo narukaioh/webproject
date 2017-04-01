@@ -1,0 +1,12 @@
+h1 Login
+
+section
+	form(method='post', action='/login/authenticate')
+
+		div.row.uniform
+			div(class='6u 12u$(xsmall)')
+				input(type='text', name='name', id='name', value='', placeholder='Name')
+			div(class="6u 12u$(xsmall)")
+				input(type='password', name='password', id='password', value='', placeholder='Password')
+			div(class='6u 12u$(xsmall)')
+				button.button Logar

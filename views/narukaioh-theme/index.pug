@@ -1,0 +1,14 @@
+doctype html
+html(ng-app="portfolio")
+	head
+		include elements/head
+	body
+		base(href='/')
+		div#wrapper
+			// main
+			div#main
+				div.inner(ng-view='')
+			
+			include elements/sidebar
+
+		include elements/footer

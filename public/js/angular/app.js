@@ -1,36 +1,32 @@
 (function(){
 
 	console.log("app.js");
+	
 	'use strict';
-	angular
-		.module('portfolio', ['ui.router', 'ngMessages', 'ngStorage'])
-		.config(config)
-		.run(run);
 
-		function config($stateProvider, $urlRouterProvider){
+	var app = angular.module('portfolio', ["ngRoute"]);
+	app.config(config);
+		//.run(run);
+
+		function config($routeProvider, $locationProvider){
 			
-			$urlRouterProvider.otherwise("/");
+			$routeProvider
 
-			//Artigos sobre rotas
-			//https://rafaell-lycan.com/2015/angular-definindo-rotas/
-
-			$stateProvider
-				.state('home',{
-					url: '/',
-					templateUrl: 'views/home.pug',
-					controller: 'controllers/homeController.js',
-					controllerAs: 'vm'
+				.when('/',{
+					templateUrl: '/partials/home',
+					controller: 'HomeController'
 				})
-				.state('login',{
-					url: '/login',
-					templateUrl: 'views/login.pug',
-					controller: 'controllers/loginController.js',
-					controllerAs: 'vm'
+				.when('/login',{
+					templateUrl: '/partials/login',
+					controller: 'LoginController'
 				});
+
+			$locationProvider.html5Mode(true);
+				
 
 		}
 
-		function run($rootScope, $http, $location, $localStorage){
+		/*function run($rootScope, $http, $location, $localStorage){
 
 			if ($localStorage.currentUser) {
 				$http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
@@ -43,6 +39,6 @@
 					$location.path('/login');
 				}
 			});
-		}
+		}*/
 
 })();

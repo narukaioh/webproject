@@ -4,12 +4,12 @@
 
 	angular
 		.module('portfolio')
-		.controller('homeController', Controller);
+		.controller('HomeController', Controller);
 
 
-	function Controller($scope){
+	function Controller(){
 		var vm = this;
-		console.log("home controller");
+		console.log("testae");
 		initController();
 
 		function initController(){

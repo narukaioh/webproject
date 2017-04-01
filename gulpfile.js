@@ -7,11 +7,10 @@ const gulp 		= require("gulp"),
 
 
 //Função automatiza a compilação dos arquivos less, minifica e salva o compilado em template/build
-gulp.task("css", function(){
-	return gulp.src("client/templates/*.less")
-		.pipe(less())
-		.pipe(minifyCSS())
-		.pipe(gulp.dest("client/template/build"));
+gulp.task("html", function(){
+	return gulp.src("views/*.pug")
+		.pipe(pug())
+		.pipe(gulp.dest("views/build"));
 });
 
-gulp.task("default",['css']);
+gulp.task("default",['html']);
