@@ -17,6 +17,7 @@
 
 		return service;
 
+		//http://jasonwatmore.com/post/2014/05/26/angularjs-basic-http-authentication-example
 		function Login( username, password, callback ){
 			$http.post('/login/authenticate', { name: username, password: password})
 				.success(function(res){

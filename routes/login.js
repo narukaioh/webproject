@@ -6,8 +6,18 @@ var jwt 		= require('jsonwebtoken');
 var app 		= express();
 
 /* GET login */
+
+router.get('/', function(req, res, next){
+	var arbitraryUrls = ['partials'];
+	if (arbitraryUrls.indexOf(req.url.split('/')[1]) > -1) {
+		next();
+	} else {
+		res.render('./narukaioh-theme/index');
+	}
+});
+
 router.get('/authenticate', function(req, res, next) {
-  	res.render('login');
+  	res.render('./narukaioh-theme/partials/login');
 });
 
 /*POST login*/
@@ -18,18 +28,18 @@ router.post('/authenticate', function(req, res){
 		if (err) throw err;
 		
 		if(!user) { // Se nao encontrou o login
-			res.render('login', { success: false, message: msg.LG0001 });
+			res.render('./narukaioh-theme/partials/login', { success: false, message: msg.LG0001 });
 		}else if (user) { // Se encontrou o login
 
 			// Verifica a senha
 			if (user.checkPassword(req.body.password)) {
-				res.render('login', { success: false, message: msg.LG0002 });
+				res.render('./narukaioh-theme/partials/login', { success: false, message: msg.LG0002 });
 			}else{
 				var token = jwt.sign(user, req.app.get('superSecret'), {
 					expiresIn: '90440 seconds'
 				});
 				console.log(token);
-				res.render('account', { success: true, message: msg.LG0003 , token: token });
+				res.render('./narukaioh-theme/account', { success: true, message: msg.LG0003 , token: token });
 			}
 		}
 	});

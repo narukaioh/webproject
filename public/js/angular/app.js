@@ -1,12 +1,10 @@
 (function(){
 
-	console.log("app.js");
-	
 	'use strict';
 
 	var app = angular.module('portfolio', ["ngRoute"]);
 	app.config(config);
-		//.run(run);
+	//app.run(run);
 
 		function config($routeProvider, $locationProvider){
 			
@@ -26,7 +24,7 @@
 
 		}
 
-		/*function run($rootScope, $http, $location, $localStorage){
+		function run($rootScope, $http, $location, $localStorage){
 
 			if ($localStorage.currentUser) {
 				$http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
@@ -39,6 +37,6 @@
 					$location.path('/login');
 				}
 			});
-		}*/
+		}
 
 })();

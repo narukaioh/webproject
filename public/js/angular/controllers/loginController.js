@@ -4,7 +4,7 @@
 
 	angular
 		.module('portfolio')
-		.controller('loginController', Controller);
+		.controller('LoginController', Controller);
 
 
 	function Controller($location, AuthenticationService){
