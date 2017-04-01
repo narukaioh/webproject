@@ -4,7 +4,7 @@
 
 	/* controller */
 	angular
-		.module('portfolio')
+		.module('Authentication')
 		.factory('AuthenticationService', Service);
 
 

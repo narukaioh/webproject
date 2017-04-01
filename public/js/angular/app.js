@@ -1,8 +1,8 @@
 (function(){
 
 	'use strict';
-
-	var app = angular.module('portfolio', ["ngRoute"]);
+	
+	var app = angular.module('portfolio', ["ngRoute","Authentication"]);
 	app.config(config);
 	//app.run(run);
 
