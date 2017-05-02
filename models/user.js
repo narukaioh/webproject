@@ -15,6 +15,11 @@ var UserSchema	= mongoose.Schema({
 		type: String,
 		required: true
 	},
+	email: {
+		type: String,
+		unique: true,
+		required: true
+	},
 	admin: Boolean
 });
 
@@ -34,7 +39,6 @@ UserSchema.pre('save', function(next){
 			user.password = hash;
 			next();
 		});
-
 	});
 });
 
