@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
 	res.send({ users: [] })
 })
 
-router.post('/',(req, res) => {
+router.post('/', (req, res) => {
 
 	const user = new User({
 		name: req.body.name,
@@ -16,9 +16,9 @@ router.post('/',(req, res) => {
 		password: req.body.password
 	});
 
-	user.save(function(err){
-		if (err) return res.status(412).json(err);
-		res.send(msg.RG0001);
+	user.save( (err) => {
+		if (err) return res.status(412).json(err)
+		res.send({ message: msg.RG0001})
 	});
 
 })

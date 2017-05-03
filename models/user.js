@@ -10,11 +10,14 @@ const validateName = value => {
 
 const validateEmail = value => {
 	let reg = /^[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2,3}/;
-	return reg.exec(value)
+	return reg.test(value)
 }
 
 // verificar se tem letras e numeros
-const validatePassword = value => { return true }
+const validatePassword = value => { 
+	let reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
+	return reg.test(value)
+}
 
 /*
 	Modelo simples para a coleção de usuários
@@ -23,7 +26,6 @@ const validatePassword = value => { return true }
 const UserSchema	= mongoose.Schema({
 	name: { 
 		type: String,
-		unique: true,
 		required: true,
 		validate: [ validateName , msg.RG0002 ]
 	},
