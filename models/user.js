@@ -1,26 +1,52 @@
-var mongoose 	= require('mongoose');
-var bcrypt 		= require('bcrypt-nodejs');
+'use strict'
+
+const mongoose 		= require('mongoose');
+const bcrypt 		= require('bcrypt-nodejs');
+const msg 			= require('../config/messages');
+
+const validateName = value => {
+	return value.search(" ") != 0
+}
+
+const validateEmail = value => {
+	let reg = /^[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2,3}/;
+	return reg.exec(value)
+}
+
+// verificar se tem letras e numeros
+const validatePassword = value => { return true }
 
 /*
 	Modelo simples para a coleção de usuários
 */
 
-var UserSchema	= mongoose.Schema({
+const UserSchema	= mongoose.Schema({
 	name: { 
 		type: String,
 		unique: true,
-		required: true
+		required: true,
+		validate: [ validateName , msg.RG0002 ]
 	},
 	password: { 
 		type: String,
-		required: true
+		required: true,
+		minlength: 8,
+		validate: [
+			{ validator: validatePassword , msg: msg.RG0003 }
+		]
 	},
 	email: {
 		type: String,
 		unique: true,
-		required: true
+		required: true,
+		validate: [ validateEmail, msg.RG0004 ]
 	},
-	admin: Boolean
+	login: {
+		type: String,
+		unique: true,
+		required: true,
+		minlength: 6
+	}
 });
 
 /* 

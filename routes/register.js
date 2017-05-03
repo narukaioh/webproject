@@ -1,6 +1,6 @@
 const express 	= require('express')
 const msg 		= require('../config/messages')
-const Account 	= require('../controllers/accountController')
+const User  	= require('../models/user')
 const router 	= express.Router()
 
 router.get('/', (req, res, next) => {
@@ -8,21 +8,24 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/',(req, res) => {
-	console.log(req.body)
 
-	const user = {
+	const user = new User({
 		name: req.body.name,
 		email: req.body.email,
 		login: req.body.login,
 		password: req.body.password
-	}
+	});
 
-	Account.register(user)
+	user.save(function(err){
+		if (err) return res.status(412).json(err);
+		res.send(msg.RG0001);
+	});
 
-	res.send({ message: msg.RG0001 })
 })
 
-router.get('/:productId', (req, res, next) => {})
+router.get('/:productId', (req, res, next) => {
+	User.find(req.productId)
+})
 
 router.put('/:productId', (req, res) => {})
 router.delete('/:productId', (req, res) => {})

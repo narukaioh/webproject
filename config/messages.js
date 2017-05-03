@@ -4,6 +4,9 @@ module.exports = {
 	'LG0003': 'Aproveite!',
 	'LG0004': 'Falha ao autenticar token.',
 	'LG0005': 'Nenhum token criado.',
+
 	'RG0001': 'Cadastro efetuado com sucesso!',
-	'RG0002': 'Houve algum erro durante o cadastro.'
+	'RG0002': 'Cadastro falhou. Digite seu primeiro nome e sobrenome.',
+	'RG0003': 'Cadastro falhou. Senha deve conter numeros, letras maiusculas e minusculas.',
+	'RG0004': 'Cadastro falhou. Email inválido'
 }
