@@ -1,7 +1,7 @@
 const express 	= require('express')
 const config 	= require('../config/config')
 const msg 		= require('../config/messages')
-const User  	= require('../models/user')
+const User  	= require('../models/user.model')
 const router 	= express.Router()
 
 router.get('/', (req, res, next) => {
