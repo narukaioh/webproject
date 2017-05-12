@@ -1,6 +1,6 @@
 const express 	= require('express')
 const msg 		= require('../config/messages')
-const User  	= require('../models/user')
+const User  	= require('../models/user.model')
 const router 	= express.Router()
 
 router.get('/', (req, res, next) => {

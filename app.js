@@ -11,9 +11,9 @@ var mongoose      = require('mongoose');
 //Configs
 var config 			  = require('./config/config');
 
-//Controllers e Rotas
+//Rotas
 var index         = require('./routes/index');
-var users         = require('./routes/users');
+var users         = require('./routes/user.router');
 var login         = require('./routes/login');
 var setup         = require('./routes/setup');
 
