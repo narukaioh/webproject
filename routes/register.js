@@ -1,4 +1,5 @@
 const express 	= require('express')
+const config 	= require('../config/config')
 const msg 		= require('../config/messages')
 const User  	= require('../models/user')
 const router 	= express.Router()
@@ -18,7 +19,8 @@ router.post('/', (req, res) => {
 
 	user.save( (err) => {
 		if (err) return res.status(412).json(err)
-		res.send({ message: msg.RG0001})
+		//res.send(config.skin+'partials/register', { message: msg.RG0001 })
+		res.send({ message: msg.RG0001 })
 	});
 
 })
