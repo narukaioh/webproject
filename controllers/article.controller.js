@@ -1,7 +1,5 @@
 const msg 	= require('../config/messages')
 const Article = require('../models/article.model')
-const assert = require('assert')
-
 
 const ArticleController = {
 

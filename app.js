@@ -14,7 +14,7 @@ var config 			  = require('./config/config');
 //Rotas
 var index         = require('./routes/index');
 var users         = require('./routes/user.router');
-var login         = require('./routes/login');
+var login         = require('./routes/login.router');
 var setup         = require('./routes/setup');
 
 //Artigos que serao postados

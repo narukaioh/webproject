@@ -25,13 +25,14 @@
   },
   "devDependencies": {
     "gulp": "latest",
-    "gulp-util": "latest",
-    "gulp-sass": "latest",
-    "gulp-less": "latest",
     "gulp-coffee": "latest",
-    "gulp-uglify": "latest",
     "gulp-concat": "latest",
+    "gulp-connect": "latest",
+    "gulp-less": "latest",
     "gulp-pug": "latest",
-    "gulp-connect": "latest"
-  } 
+    "gulp-sass": "latest",
+    "gulp-uglify": "latest",
+    "gulp-util": "latest",
+    "moment": "^2.18.1"
+  }
 }
