@@ -8,5 +8,10 @@ module.exports = {
 	'RG0001': 'Cadastro efetuado com sucesso!',
 	'RG0002': 'Cadastro falhou. Digite seu primeiro nome e sobrenome.',
 	'RG0003': 'Cadastro falhou. Senha deve conter pelo menos 8 caracteres e variar entre números, letras maiúsculas e minúsculas.',
-	'RG0004': 'Cadastro falhou. Email inválido'
+	'RG0004': 'Cadastro falhou. Email inválido',
+
+	'PS0001': 'Algum erro foi encontrado.',
+	'PS0002': 'Seu artigo foi enviado!',
+	'PS0003': 'Seu artigo foi deletado!',
+	'PS0004': 'Seu artigo foi alterado!'
 }

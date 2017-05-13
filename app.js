@@ -17,10 +17,14 @@ var users         = require('./routes/user.router');
 var login         = require('./routes/login');
 var setup         = require('./routes/setup');
 
+//Artigos que serao postados
+var article       = require('./routes/article.router');
+
 const register    = require('./routes/register');
 
 //Iniciando aplicação
 var app = express();
+mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
 
 // view engine setup
@@ -47,6 +51,7 @@ app.use('/users', users);
 app.use('/setup', setup);
 app.use('/login', login);
 app.use('/register', register);
+app.use('/blog', article);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
