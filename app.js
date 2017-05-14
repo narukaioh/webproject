@@ -1,76 +1,67 @@
 'use strict'
 
-var express 		  = require('express');
-var path 			    = require('path');
-var favicon 		  = require('serve-favicon');
-var logger 			  = require('morgan');
-var cookieParser 	= require('cookie-parser');
-var bodyParser 		= require('body-parser');
-var mongoose      = require('mongoose');
+const express 		  	= require('express')
+const path 			    = require('path')
+const favicon 		  	= require('serve-favicon')
+const logger			= require('morgan')
+const cookieParser 		= require('cookie-parser')
+const bodyParser 		= require('body-parser')
+const mongoose			= require('mongoose')
 
 //Configs
-var config 			  = require('./config/config');
+const config 			= require('./config/config')
 
 //Rotas
-var index         = require('./routes/index');
-var users         = require('./routes/user.router');
-var login         = require('./routes/login.router');
-var setup         = require('./routes/setup');
-
-//Artigos que serao postados
-var article       = require('./routes/article.router');
-
-const register    = require('./routes/register');
+const index 			= require('./routes/index')
+const users 			= require('./routes/user.router')
+const articles 			= require('./routes/article.router')
+const categories		= require('./routes/category.router')
+const login				= require('./routes/login.router')
 
 //Iniciando aplicação
-var app = express();
-mongoose.Promise = global.Promise;
-mongoose.connect(config.database);
+const app = express()
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-app.set('superSecret', config.secret);
+// Conectando ao banco de dados
+mongoose.Promise = global.Promise
+mongoose.connect(config.database)
 
-// uncomment after placing your favicon in /public
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'pug')
+app.set('superSecret', config.secret)
+
 //app.use(favicon(path.join(__dirname, 'public', 'favicon-16x16.png')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(function(req, res, next){
-  res.setHeader('Access-Control-Allow-Origin','*');
-  res.setHeader('Access-Control-Allow-Methods','GET, POST');
-  res.setHeader('Access-Control-Allow-Headers','X-Requested-With,content-type, Authorization');
-  next();
+app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
+app.use( (req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin','*')
+	res.setHeader('Access-Control-Allow-Methods','GET, POST')
+	res.setHeader('Access-Control-Allow-Headers','X-Requested-With,content-type, Authorization')
+	next()
 });
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/setup', setup);
-app.use('/login', login);
-app.use('/register', register);
-app.use('/blog', article);
+app.use('/', index)
+app.use('/api/users', users)
+app.use('/api/categories', categories)
+app.use('/api/account', login)
+app.use('/api/blog', articles)
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use( (req, res, next) => {
+	const err = new Error('Not Found')
+	err.status = 404
+	next(err)
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use( (err, req, res, next) => {
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('narukaioh-theme/partials/error');
+	res.locals.message = err.message
+	res.locals.error = req.app.get('env') === 'development' ? err : {}
+
+	res.status(err.status || 500)
+	res.render(config.skin+'/partials/error')
+
 });
 
 module.exports = app;
-
-//https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens

@@ -1,13 +1,17 @@
+'use strict'
+
 const User 		= require('../models/user.model')
 const config 	= require('../config/config')
 const msg 		= require('../config/messages')
+// Modulo para criar tokens
 const jwt 		= require('jsonwebtoken')
+// Modulo para definir um periodo de tempo que o token ira expirar
 const moment 	= require('moment')
 
 const LoginController = {
 
 	Authenticate: (req, res, next) => {
-		User.findOne({ name: req.body.name }, (err, user) => {
+		User.findOne({ login: req.body.login }, (err, user) => {
 			if (err) throw err
 			if(!user) { // Se nao encontrou o login
 				//res.render(config.skin+'/partials/login', { status: false, message: msg.LG0001 })
@@ -22,7 +26,7 @@ const LoginController = {
 					const token = jwt.sign(user, req.app.get('superSecret'), {
 						expiresIn: expires 
 					})
-					res.json({ status: true, message: msg.LG0003 , token: token })
+					res.json({ status: true, message: msg.LG0003 , token: token, user: user })
 					//res.render(config.skin+'/account', { status: true, message: msg.LG0003 , token: token })
 				}
 			}

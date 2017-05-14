@@ -1,9 +1,13 @@
+'use strict'
+
 const mongoose 		= require('mongoose')
+const Schema 		= mongoose.Schema
+// Modulo para criar slugs
 const slug 			= require('mongoose-slug-generator')
 
 mongoose.plugin(slug)
 
-const ArticleSchema = mongoose.Schema({
+const ArticleSchema = new Schema({
 
 	title: {
 		type: String,
@@ -12,6 +16,9 @@ const ArticleSchema = mongoose.Schema({
 	subtitle: {
 		type: String
 	},
+	categories: [
+		{ type: Schema.ObjectId, ref: 'Category' }
+	],
 	slug: {
 		type: String,
 		unique: true,
@@ -27,7 +34,7 @@ const ArticleSchema = mongoose.Schema({
 		required: true
 	},
 	author: {
-		type: mongoose.Schema.Type.ObjectId,
+		type: Schema.ObjectId,
 		ref: 'User'
 	},
 	comments: [
@@ -35,7 +42,7 @@ const ArticleSchema = mongoose.Schema({
 			body: String, 
 			date: Date,
 			postedBy: {
-				type: mongoose.Schema.Type.ObjectId,
+				type: Schema.ObjectId,
 				ref: 'User'
 			} 
 		}]

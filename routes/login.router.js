@@ -1,11 +1,13 @@
 const express 	= require('express')
 const router 	= express.Router()
-const Login  	= require('../controllers/login.controller')
+const LoginCtrl  	= require('../controllers/login.controller')
 
 // Rotas permitidas
-router.post('/authenticate', Login.Authenticate )
+router.get('/', (req, res, next) => { res.json({ msg: 'voce pode logar!' }) })
+router.get('/authenticate', (req, res, next) => { res.json({ msg: 'voce pode logar!' }) })
+router.post('/authenticate', LoginCtrl.Authenticate )
 
-router.use(Login.Verify)
+router.use(LoginCtrl.Verify)
 
 //  Rotas negadas
 router.get('/posts', (req, res, next) => { res.json({ msg: 'ola mundo' }) })

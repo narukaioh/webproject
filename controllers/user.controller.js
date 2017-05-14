@@ -1,10 +1,12 @@
-const UserModel = require('../models/user.model');
+'use strict'
+
+const User = require('../models/user.model');
 
 const UserController = {
 
 	GetUsers: 	(req, res, next) => {
-		UserModel.find({}, function(err, users){
-			res.render('users', { users: users });
+		User.find({}, function(err, users){
+			res.json({ users: users });
 		});		
 	},
 	PostUser: 	(req, res, next) => {

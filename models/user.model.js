@@ -1,8 +1,9 @@
 'use strict'
 
-const mongoose 		= require('mongoose');
-const bcrypt 		= require('bcrypt-nodejs');
-const msg 			= require('../config/messages');
+const mongoose 		= require('mongoose')
+const Schema 		= mongoose.Schema
+const bcrypt 		= require('bcrypt-nodejs')
+const msg 			= require('../config/messages')
 
 const validateName = value => {
 	return value.search(" ") != 0
@@ -23,7 +24,7 @@ const validatePassword = value => {
 	Modelo simples para a coleção de usuários
 */
 
-const UserSchema	= mongoose.Schema({
+const UserSchema	= new Schema({
 	name: { 
 		type: String,
 		required: true,
@@ -48,6 +49,10 @@ const UserSchema	= mongoose.Schema({
 		unique: true,
 		required: true,
 		minlength: 6
+	},
+	articles: {
+		type: Schema.ObjectId,
+		ref: 'Article'
 	}
 });
 
@@ -55,17 +60,17 @@ const UserSchema	= mongoose.Schema({
 	metodo pre save utilizado sempre antes de salvar uma nova instancia de usuario no banco 
 	nele usamos a criptografia no password
 */
-UserSchema.pre('save', function(next){
-	var user = this;
+UserSchema.pre('save', (next) => {
+	const user = this
 
-	if (!user.isModified('password')) return next();
+	if (!user.isModified('password')) return next()
 
-	bcrypt.genSalt(5, function(err, salt){
-		if (err) return next(err);
-		bcrypt.hash(user.password, salt, null, function(err, hash){
-			if (err) return next(err);
-			user.password = hash;
-			next();
+	bcrypt.genSalt(5, (err, salt) => {
+		if (err) return next(err)
+		bcrypt.hash(user.password, salt, null, (err, hash) => {
+			if (err) return next(err)
+			user.password = hash
+			next()
 		});
 	});
 });
@@ -74,8 +79,8 @@ UserSchema.pre('save', function(next){
 	metodo para validar se a senha é realmente a que consta no banco
 */
 
-UserSchema.methods.checkPassword = function(password, next) {
-	bcrypt.compare(password, this.password, function(err, isMath){
+UserSchema.methods.checkPassword = (password, next) => {
+	bcrypt.compare(password, this.password, (err, isMath) => {
 		if (err) return next(err);
 		return isMath;
 	});
