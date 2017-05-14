@@ -33,6 +33,7 @@
     "gulp-sass": "latest",
     "gulp-uglify": "latest",
     "gulp-util": "latest",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "mongoose-slug-generator": "^1.0.4"
   }
 }
