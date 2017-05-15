@@ -1,10 +1,15 @@
-var express = require('express');
-var router 	= express.Router();
-var User 	= require('../controllers/user.controller');
+const express 	= require('express')
+const router 	= express.Router()
+const User 		= require('../controllers/user.controller')
+const LoginCtrl = require('../controllers/login.controller')
 
-router.get('/', User.GetUsers );
-router.post('/', User.PostUser);
-router.delete('/:id', User.DeleteUser );
-router.put('/:id', User.UpdateUser );
+router.get('/', User.GetUsers )
+router.get('/:id', User.GetUser )
+router.post('/', User.PostUser)
 
-module.exports = router;
+router.use(LoginCtrl.Verify )
+
+router.delete('/:id', User.DeleteUser )
+router.put('/:id', User.UpdateUser )
+
+module.exports = router
