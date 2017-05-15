@@ -5,6 +5,8 @@ const Schema 		= mongoose.Schema
 // Modulo para criar slugs
 const slug			= require('mongoose-slug-generator')
 
+mongoose.plugin(slug)
+
 const CategorySchema = new Schema({
 	name: {
 		type: String,
