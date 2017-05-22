@@ -12,6 +12,9 @@ module.exports = {
 	'RG0005': 'Usuário foi deletado.',
 	'RG0006': 'Algum problema foi encontrado.',
 	'RG0007': 'Seu cadastro foi alterado com sucesso!',
+	'RG0008': 'Cadastro falhou. Digite seu nome',
+	'RG0009': 'Cadastro falhou. Digite seu login',
+	'RG0010': 'Cadastro falhou. Esse email já está cadastrado.',
 
 	'PS0001': 'Algum erro foi encontrado.',
 	'PS0002': 'Seu artigo foi enviado!',

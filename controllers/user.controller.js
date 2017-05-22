@@ -20,9 +20,12 @@ const UserController = {
 	PostUser: 	(req, res, next) => {
 		const user = new User(req.body)
 		user.save( err => {
-			if (err) res.json({status: false, error: msg.RG0006 })
-			res.json({status: true, message: msg.RG0002 })
-		})
+			if (err) { 
+				return res.json({status: false, message_error: msg.RG0006, error: err }) 
+			}else{
+				res.json({status: true, message: msg.RG0001 })
+			}
+		})			
 	},
 	DeleteUser: (req, res, next) => {
 		User.remove({_id: req.params.id}, (err, user) => {
