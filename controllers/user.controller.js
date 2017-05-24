@@ -21,7 +21,7 @@ const UserController = {
 		const user = new User(req.body)
 		user.save( err => {
 			if (err) { 
-				return res.json({status: false, message_error: msg.RG0006, error: err }) 
+				return res.json({status: false, message: msg.RG0006, error: err }) 
 			}else{
 				res.json({status: true, message: msg.RG0001 })
 			}
