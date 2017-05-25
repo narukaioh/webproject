@@ -13,8 +13,10 @@ const UserController = {
 	},
 	GetUser: 	(req, res, next) => {
 		User.find({_id: req.params.id }, function(err, user){
-			if (err) res.json({status: false, error: msg.RG0006 })
-			res.json({ status: true, user: user });
+			if (err) { res.json({status: false, message: msg.RG0006, error: err }) }
+			else {
+				res.json({ status: true, user: user });
+			}
 		});		
 	},
 	PostUser: 	(req, res, next) => {
