@@ -42,7 +42,7 @@ app.use('/', index)
 app.use('/api/users', users)
 app.use('/api/categories', categories)
 app.use('/api/account', login)
-app.use('/api/blog', articles)
+app.use('/api/articles', articles)
 
 app.use( (req, res, next) => {
 	const err = new Error('Not Found')
