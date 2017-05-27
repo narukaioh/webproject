@@ -7,7 +7,7 @@ const LoginCtrl = require('../controllers/login.controller')
 
 // Rotas permitidas
 router.get('/', ArticleCtrl.GetArticles )
-router.get('/:id', ArticleCtrl.GetArticle )
+router.get('/:slug', ArticleCtrl.GetArticle )
 
 //router.use(LoginCtrl.Verify)
 // Rotas negadas

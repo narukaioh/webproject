@@ -13,7 +13,7 @@ const ArticleController = {
 	},
 	
 	GetArticle: (req, res, next) => {
-		Article.find({_id: req.params.id }, (err, article) => {
+		Article.find({slug: req.params.slug }, (err, article) => {
 			if (err) res.json({ status: false, error: msg.PS0001 })
 			res.json({ status: true, article: article })
 		})
