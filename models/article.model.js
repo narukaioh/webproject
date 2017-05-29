@@ -16,9 +16,7 @@ const ArticleSchema = new Schema({
 	subtitle: {
 		type: String
 	},
-	categories: [
-		{ type: Schema.ObjectId, ref: 'Category' }
-	],
+	categories: { type: Schema.ObjectId, ref: 'Category' },
 	slug: {
 		type: String,
 		unique: true,

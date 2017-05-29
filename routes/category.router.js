@@ -8,8 +8,8 @@ const LoginCtrl 	= require('../controllers/login.controller')
 // Rotas permitidas
 router.get('/', CategoryCtrl.GetCategories )
 router.get('/:id', CategoryCtrl.GetCategory )
-
-router.use(LoginCtrl.Verify)
+router.get('/:slug/articles', CategoryCtrl.GetArticlesByCategory )
+//router.use(LoginCtrl.Verify)
 
 // Rotas negadas
 router.post('/', CategoryCtrl.PostCategory )
