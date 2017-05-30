@@ -16,7 +16,10 @@ const ArticleSchema = new Schema({
 	subtitle: {
 		type: String
 	},
-	categories: { type: Schema.ObjectId, ref: 'Category' },
+	category: { 
+		type: String, 
+		required: true,
+	},
 	slug: {
 		type: String,
 		unique: true,
