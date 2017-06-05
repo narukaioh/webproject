@@ -1,5 +1,5 @@
 module.exports = {
-	'secret': '1l0v3j4v45cr1p7',
-	'database': 'mongodb://localhost/portfolio',
+	'secret': 'stE5atHeR!7e',
+	'database': 'mongodb://portfolio:5huxEgaw5ut=@ds163721.mlab.com:63721/heroku_nlsw4gk0',
 	'skin': './narukaioh-theme'
 }
