@@ -22,7 +22,7 @@
     "jade": "~1.11.0",
     "jsonwebtoken": "~7.2.1",
     "mongoose": "~4.7.6",
-    "mongoose-slug-generator": "^1.0.4",    
+    "mongoose-slug-generator": "^1.0.4",
     "morgan": "~1.7.0",
     "ngstorage": "^0.3.11",
     "pug": "latest",
@@ -39,7 +39,6 @@
     "gulp-sass": "latest",
     "gulp-uglify": "latest",
     "gulp-util": "latest",
-    "moment": "^2.18.1",
-    "mongoose-slug-generator": "^1.0.4"
+    "moment": "^2.18.1"
   }
 }
