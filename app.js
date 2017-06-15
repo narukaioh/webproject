@@ -19,7 +19,8 @@ const articles 			= require('./routes/article.router')
 const categories		= require('./routes/category.router')
 const login				= require('./routes/login.router')
 //Rotas para componentes
-const components 		= require('./components/component.router')
+const components 		= require('./components/components.router')
+
 //Iniciando aplicação
 const app = express()
 

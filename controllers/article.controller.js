@@ -5,7 +5,7 @@ const Article = require('../models/article.model')
 
 const ArticleController = {
 
-	GetArticles: 	(req, res, next) => {		
+	GetArticles: 	(req, res, next) => {
 		Article.find({}, (err, articles) => {
 			if (err) { 
 				res.json({ status: false, message: msg.PS0001, error: err })
@@ -25,6 +25,7 @@ const ArticleController = {
 	},
 
 	PostArticle: 	(req, res, next) => {
+		console.log(req.body)
 		const article = new Article(req.body)
 		article.save((err) => {
 			if (err) { 

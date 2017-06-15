@@ -26,5 +26,6 @@ module.exports = {
 	'CA0003': 'A categoria foi removida.',
 	'CA0004': 'A categoria foi alterada!',
 
-	'CP0001': 'Algum erro aconteceu na busca pela resposta do componente.'
+	'CP0001': 'Algum erro aconteceu na busca pela resposta do componente.',
+	'CP0002': 'Artigo enviado com sucesso!'
 }
