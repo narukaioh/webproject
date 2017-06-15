@@ -18,7 +18,8 @@ const users 			= require('./routes/user.router')
 const articles 			= require('./routes/article.router')
 const categories		= require('./routes/category.router')
 const login				= require('./routes/login.router')
-
+//Rotas para componentes
+const components 		= require('./components/component.router')
 //Iniciando aplicação
 const app = express()
 
@@ -43,6 +44,7 @@ app.use('/api/users', users)
 app.use('/api/categories', categories)
 app.use('/api/account', login)
 app.use('/api/articles', articles)
+app.use('/api/components', components )
 
 app.use( (req, res, next) => {
 	const err = new Error('Not Found')

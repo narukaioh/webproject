@@ -8,7 +8,7 @@ const ArticleController = {
 	GetArticles: 	(req, res, next) => {		
 		Article.find({}, (err, articles) => {
 			if (err) { 
-				res.json({ status: false, error: msg.PS0001, error: err })
+				res.json({ status: false, message: msg.PS0001, error: err })
 			}else{
 				res.json({ status: true, articles: articles })
 			}
@@ -25,15 +25,12 @@ const ArticleController = {
 	},
 
 	PostArticle: 	(req, res, next) => {
-		console.log(req.body.title);
 		const article = new Article(req.body)
-		console.log(article)
 		article.save((err) => {
 			if (err) { 
 				res.json({ status: false, message: msg.PS0001, error: err })
-			} else { 
-				res.json({ status: true, message: msg.PS0002 })
 			}
+			res.json({ status: true, message: msg.PS0002 })
 		})
 	},
 

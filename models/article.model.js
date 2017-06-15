@@ -20,6 +20,9 @@ const ArticleSchema = new Schema({
 		type: String, 
 		required: true,
 	},
+	featured: {
+		type: Boolean
+	},
 	slug: {
 		type: String,
 		unique: true,
