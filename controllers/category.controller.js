@@ -12,12 +12,15 @@ const CategoryController = {
 		})
 	},
 	GetArticlesByCategory: (req, res, next) => {
-		console.log("okay chegou aqui!")
 		res.json({status: true, message: 'GetAllArticleByCategory'})
 	},
 	GetCategory: (req, res, next) => {
-		Category.find({_id: req.params.id }, (err, category) => {
-			if (err) res.json({ status: false, error: msg.CA0001 })
+		console.log(req.params.slug)
+		Category.find({slug: req.params.slug }, (err, category) => {
+			if (err) {
+				res.json({ status: false, error: msg.CA0001 })
+				return
+			}
 			res.json({ status: true, category: category })
 		})
 	},
