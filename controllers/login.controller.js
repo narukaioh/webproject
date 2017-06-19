@@ -11,8 +11,9 @@ const moment 	= require('moment')
 const LoginController = {
 
 	Authenticate: (req, res, next) => {
-		User.findOne({ login: req.body.login }, (err, user) => {
-			if (err) throw err
+		console.log(req.body)
+		User.findOne({ login: req.body.name }, (err, user) => {
+			if (err) { throw err}
 			if(!user) { // Se nao encontrou o login
 				//res.render(config.skin+'/partials/login', { status: false, message: msg.LG0001 })
 				res.json({status: false, error: msg.LG0001 })
