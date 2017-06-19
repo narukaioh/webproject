@@ -5,7 +5,7 @@ const msg     = require("../../config/messages")
 
 const LastArticles = {
     getLastArticles: (req, res, next) => {
-        Article.find({},{},{ sort: { 'date': -1 }, limit: 5 }, (err, articles) => {
+        Article.find({},{},{ sort: { 'date': -1 }, limit: 6 }, (err, articles) => {
             if (err) {
                 res.json({status: false, message: '', error: err })
             }
