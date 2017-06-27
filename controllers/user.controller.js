@@ -51,6 +51,11 @@ const UserController = {
 				res.json({ status: true, message: msg.RG0007 })
 			})
 		})
+	},
+
+	GetMe: (req, res, next) => {
+		const token = req.body.token || req.query.token || req.headers['x-access-token'];
+		res.json({ name: 'Ju Dantas', email: 'jucienyds@gmail.com', level: 'admin' })
 	}
 }
 
