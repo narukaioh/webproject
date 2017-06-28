@@ -1,7 +1,9 @@
 'use strict'
 
 const msg = require('../config/messages')
-const User = require('../models/user.model');
+const User = require('../models/user.model')
+const jwt = require('jsonwebtoken')
+const config = require('../config/config')
 
 const UserController = {
 
@@ -47,15 +49,23 @@ const UserController = {
 			user.password = data.password,
 			user.login = data.login,
 			user.save(err => {
-				if (err) res.json({status: false, error: msg.RG0006 })
+				if (err) res.json({status: false, error: err, message: msg.RG0006 })
 				res.json({ status: true, message: msg.RG0007 })
 			})
 		})
 	},
 
 	GetMe: (req, res, next) => {
-		const token = req.body.token || req.query.token || req.headers['x-access-token'];
-		res.json({ name: 'Ju Dantas', email: 'jucienyds@gmail.com', level: 'admin' })
+		const token = req.body.token || req.query.token || req.headers['x-access-token']
+		const decode = jwt.decode(token, config.secret)
+		const payload = decode._doc;
+		User.find({ name: payload.name, email: payload.email }, (err, user) => {
+			if (err) {
+				res.json({ status: false, error: err })
+			}else{
+				res.json({ status: true, user: user })
+			}
+		})
 	}
 }
 

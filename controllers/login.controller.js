@@ -14,12 +14,10 @@ const LoginController = {
 		User.findOne({ login: req.body.name }, (err, user) => {
 			if (err) { throw err}
 			if(!user) { // Se nao encontrou o login
-				//res.render(config.skin+'/partials/login', { status: false, message: msg.LG0001 })
 				res.json({status: false, error: msg.LG0001 })
 			}else if (user) { // Se encontrou o login
 				// Verifica a senha
 				if (user.checkPassword(req.body.password)) {
-					//res.render(config.skin+'/partials/login', { status: false, message: msg.LG0002 })
 					res.json({ status: false, error: msg.LG0002 })
 				}else{
 					const expires = moment().add(7, 'days').valueOf()
@@ -27,7 +25,6 @@ const LoginController = {
 						expiresIn: expires 
 					})
 					res.json({ status: true, message: msg.LG0003 , token: token, user: user })
-					//res.render(config.skin+'/account', { status: true, message: msg.LG0003 , token: token })
 				}
 			}
 		});
